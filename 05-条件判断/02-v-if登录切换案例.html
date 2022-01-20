@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--在输入框中加入key解决input复用问题-->
+  <span v-if="isUser">
+    <label for="userName">用户账号</label>
+    <input type="text" id="userName" placeholder="请输入账号" key="userName">
+  </span>
+  <span v-else>
+    <label for="userEmail">用户邮箱</label>
+    <input type="text" id="userEmail" placeholder="请输入邮箱" key="userEmail">
+  </span>
+  <button @click="typeChange">切换类型</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      isUser: true
+    },
+    methods: {
+      typeChange() {
+        this.isUser = !this.isUser;
+      }
+    }
+  })
+</script>
+</body>
+</html>

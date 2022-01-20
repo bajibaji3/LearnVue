@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <button @click="btnClick">button</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: {
+      btnClick() {
+        //filter/map/reduce
+        //1、filter函数对数组进行过滤，filter中的回调函数必须返回true或false，
+        //当返回true时，函数内部自动将这次的n加入到新数组中，
+        //当返回false时，自动过滤掉这次的n
+        const nums = [10, 20, 111, 222, 444, 40, 50];
+        let newList1 = nums.filter(function (n) {
+          return n < 100;
+        });
+        console.log(newList1);
+
+        //2、map函数，对数组中的所有元素都执行某种操作
+        let newList2 = nums.map(function (n) {
+          return n * 2;
+        });
+        console.log(newList2);
+
+        //reduce函数对数组中所有内容进行汇总
+        let total = nums.reduce(function (preVlaue, n) {
+          return preVlaue + n;
+        },0);
+        console.log(total);
+
+        let res = nums.filter(n => n < 100).map(n => n * 2).reduce((pre, n) => pre + n);
+        console.log(res);
+      }
+    }
+  })
+</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--事件调用的方法没有参数，方法名后面的小括号可以省略-->
+  <button @click="btn1Click()">button1</button>
+  <button @click="btn1Click">button1</button>
+  <!--事件调用的方法有参数，但是调用时没给它传参数，Vue会将浏览器产生的event事件对象作为参数传到方法,
+  想要拿到这个event对象可以使用这种方式-->
+  <button @click="btn2Click">button2</button>
+  <!--入果既需要event对象，同时还需要其它参数，那么可以通过$event来获取event对象-->
+  <button @click="btn3Click(123, $event)">button3</button>
+
+<!--事件监听的修饰符-->
+<!--1、.stop修饰符，阻止事件冒泡-->
+  <div @click="divClick">
+    div
+    <button @click.stop="btn4Click">button4</button>
+  </div>
+<!--2、.prevent修饰符，阻止默认行为-->
+  <form action="http://www.baidu.com">
+    <input @click.prevent="submitClick" type="submit" value="提交">
+  </form>
+<!--3、只监听键盘中某个键的按下-->
+  <input @keyup.enter="keyUp" type="text">
+<!--4、.once修饰符，只触发一次-->
+  <button @click.once="btn5Click">button5</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+    },
+    methods: {
+      btn1Click() {
+        console.log("btn1Click");
+      },
+      btn2Click(event) {
+        console.log(event);
+      },
+      btn3Click(num, event) {
+        console.log(num, event);
+      },
+      divClick() {
+        console.log("divClick");
+      },
+      btn4Click() {
+        console.log("btn4Click");
+      },
+      submitClick() {
+        console.log("submitClick");
+      },
+      keyUp() {
+        console.log("keyUp");
+      },
+      btn5Click() {
+        console.log("btn5Click");
+      }
+    }
+  })
+</script>
+</body>
+</html>

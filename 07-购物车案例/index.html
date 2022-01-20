@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <div v-if="books.length">
+    <table>
+      <thead>
+      <tr>
+        <th></th>
+        <th>书籍名称</th>
+        <th>出版日期</th>
+        <th>价格</th>
+        <th>购买数量</th>
+        <th>操作</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="(book, index) in books" :key="book.id">
+        <td>{{book.id}}</td>
+        <td>{{book.name}}</td>
+        <td>{{book.date}}</td>
+        <!--使用过滤器对价格的显示进行处理-->
+        <td>{{book.price | showPrice}}</td>
+        <td>
+          <button @click="subClick(index)" :disabled="book.count <= 1">-</button>
+          {{book.count}}
+          <button @click="addClick(index)">+</button>
+        </td>
+        <td>
+          <button @click="moveClick(index)">移除</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <h2>总价格：{{totalPrice | showPrice}}</h2>
+  </div>
+  <h2 v-else>购物车为空</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      books: [
+        {
+          id: 1,
+          name: '数据结构',
+          date: '2021/4/15',
+          price: 10.00,
+          count: 1
+        },
+        {
+          id: 2,
+          name: '操作系统',
+          date: '2021/4/16',
+          price: 20.00,
+          count: 1
+        },
+        {
+          id: 3,
+          name: '计算机组成原理',
+          date: '2021/4/17',
+          price: 30.00,
+          count: 1
+        },
+        {
+          id: 4,
+          name: '计算机网络',
+          date: '2021/4/18',
+          price: 40.00,
+          count: 1
+        }
+      ]
+    },
+    computed: {
+      totalPrice() {
+        let res = 0;
+        //方法一：传统循环写法
+        // for(let i = 0; i < this.books.length; i++) {
+        //   res = this.books[i].price * this.books[i].count + res;
+        // }
+
+        //方法二
+        // for(let i in this.books) {
+        //   res = this.books[i].price * this.books[i].count + res;
+        // }
+
+        //方法三
+        // for(let book of this.books) {
+        //   res = book.price * book.count + res;
+        // }
+
+        //方法四：高阶函数
+        res = this.books.reduce(function (preValue, book) {
+          return preValue + book.count * book.price;
+        },0)
+        return res;
+      }
+    },
+    methods: {
+      subClick(index) {
+        this.books[index].count--;
+      },
+      addClick(index) {
+        this.books[index].count++;
+      },
+      moveClick(index) {
+        this.books.splice(index, 1);
+      }
+    },
+    //过滤器
+    filters: {
+      showPrice(price) {
+        return '￥' + price.toFixed(2);
+      }
+    }
+  })
+</script>
+</body>
+</html>

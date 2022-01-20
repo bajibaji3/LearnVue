@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<!--Mustache语法只能用在标签内容上，不能用在标签属性上，对属性的动态绑定要用v-bind-->
+<body>
+<div id="app">
+  <img v-bind:src="url" alt="">
+  <a v-bind:href="href">百度一下</a>
+  <!--语法糖写法-->
+<!--  <img :src="url" alt="">-->
+<!--  <a :href="href">百度一下</a>-->
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      url: 'https://img12.360buyimg.com/babel/jfs/t1/168090/39/15796/54509/6065aa6fEc7b3b250/d61d985a1780d224.jpg.webp',
+      href: 'http://www.baidu.com'
+    }
+  })
+</script>
+</body>
+</html>

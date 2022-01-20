@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <ul>
+    <li v-for="item in letters">{{item}}</li>
+  </ul>
+  <button @click="btnClick">btn</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      letters: ['A', 'B', 'C','D','E','F']
+    },
+    methods: {
+      btnClick() {
+        //1、push()，向数组最后追加元素，可以传多个值
+        // this.letters.push('aaa');
+        // this.letters.push('aaa', 'bbb', 'ccc');
+
+        //2、pop()，将数组最后面的元素删除
+        // this.letters.pop();
+
+        //3、shift()，将数组最前面的元素删除
+        // this.letters.shift();
+
+        //4、unshift()，向数组前面追加元素，可以传多个值
+        // this.letters.unshift('aaa');
+        // this.letters.unshift('aaa', 'bbb', 'ccc');
+
+        //5、splice()，修改元素/删除元素/添加元素
+        //删除元素，第一个参数传开始删除元素的位置，第二个参数传要删除的元素个数
+        // this.letters.splice(1, 2);
+        //替换元素，第一个参数传开始替换元素的位置，第二个参数传要替换的元素个数，第三个参数传替换后的值
+        // this.letters.splice(1, 2, 'aaa', 'bbb');
+        //添加元素，第一个参数传开始添加元素的位置，第二个参数传0，第三个参数传添加的值
+        // this.letters.splice(1, 0, 'aaa', 'bbb');
+
+        //6、sort()
+
+        //7、reverse()
+
+        //8、vue的set方法set(要修改的对象，索引值，修改后的值)
+        // Vue.set(this.letters, 0, 'aaa');
+      }
+    }
+  })
+</script>
+</body>
+</html>

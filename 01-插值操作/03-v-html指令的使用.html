@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--v-html-->
+  <h2>{{url}}</h2>
+  <h2 v-html="url"></h2>
+
+  <!--v-text-->
+  <h2>{{message}}</h2>
+  <h2 v-text="message"></h2>
+  <!--会覆盖原来的内容-->
+  <h2 v-text="message">world</h2>
+
+  <!--v-pre，会原封不动展示标签里的内容-->
+  <h2>{{message}}</h2>
+  <h2 v-pre>{{message}}</h2>
+
+
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      url: '<a href="http://www.baidu.com">百度一下</a>',
+      message: 'hello'
+    }
+  })
+</script>
+</body>
+</html>

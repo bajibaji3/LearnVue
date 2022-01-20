@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn1 :cmovies="movies" :cmessage="message"></cpn1>
+<!--  <cpn1></cpn1>-->
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>{{cmessage}}</h2>
+    <ul v-for="item in cmovies">
+      <li>{{item}}</li>
+    </ul>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      movies: ['叶问1', '叶问2', '叶问3'],
+      message: 'hello world'
+    },
+    components: {
+      'cpn1': {
+        template: `#cpn1`,
+        //第一种写法
+        // props: ['cmovies', 'cmessage'],
+        //第二种写法
+        // props: {
+        //   cmovies: Array,
+        //   cmessage: String
+        // },
+        //第三种写法。当类型为Array或Object时，设置默认值要通过函数设置，不能通过属性
+        props: {
+          cmovies: {
+            type: Array,
+            default() {
+              return []
+            }
+          },
+          cmessage: {
+            type: String,
+            default: 'aaaaa'
+          },
+        },
+      }
+
+    }
+  })
+</script>
+</body>
+</html>

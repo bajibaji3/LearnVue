@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn></cpn>
+  <cpn>
+    <template slot-scope="slot">
+      <span>{{slot.data.join(' - ')}}</span>
+    </template>
+  </cpn>
+</div>
+
+<template id="cpn">
+  <div>
+    <!--data是自己定义的名称，可以换别的名称-->
+    <slot :data="books">
+      <ul v-for="book in books">
+        <li>{{book}}</li>
+      </ul>
+    </slot>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let app = new Vue({
+    el: '#app',
+    components: {
+      cpn: {
+        template: '#cpn',
+        data() {
+          return {
+            books: ['数据结构', '操作系统', '计算机组成原理', '计算机网络']
+          }
+        }
+      }
+    },
+  })
+</script>
+</body>
+</html>

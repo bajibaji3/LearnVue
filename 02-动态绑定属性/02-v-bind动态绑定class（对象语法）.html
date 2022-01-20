@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .active {
+      color: aqua;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+  <!--  <h2 :class="{key1: value1, key2: value2}">{{message}}</h2>-->
+  <!--  <h2 :class="{类名1: boolean, 类名2: boolean}">{{message}}</h2>-->
+  <!--  传统的class和v-bind绑定的class都会显示出来-->
+  <h2 class="title" :class="{active: isActive, line: isLine}">{{message}}</h2>
+  <h2 class="title" :class="getClass()">{{message}}</h2>
+  <button @click="btnClick">切换</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'hello',
+      isActive: true,
+      isLine: true
+    },
+    methods: {
+      btnClick() {
+        this.isActive = !this.isActive;
+      },
+      getClass() {
+        return {active: this.isActive, line: this.isLine};
+      }
+    }
+  })
+</script>
+</body>
+</html>

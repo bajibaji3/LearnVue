@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //如果需要同时进行两个网络请求，需要两个请求的结果都返回才能继续下一步，可以使用Promise.all方法
+  Promise.all([
+      new Promise((resolve, reject) => {
+        setTimeout(() => {
+          resolve('res1')
+        }, 1000)
+      }),
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('res2')
+      }, 2000)
+    })
+  ]).then(results => {
+    console.log(results);
+  })
+</script>
+</body>
+</html>

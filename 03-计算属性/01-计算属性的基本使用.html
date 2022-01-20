@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{getFullStr()}}</h2>
+  <h2>{{fullStr}}</h2>
+  <h2>总价格：{{totalPrice}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      str1: 'hello',
+      str2: 'world',
+      books: [
+        {name: '数据结构', price: 10},
+        {name: '操作系统', price: 20},
+        {name: '计算机组成原理', price: 30},
+        {name: '计算机网络', price: 40},
+      ]
+    },
+    //计算属性和method对比：计算属性存在缓存机制，如果值不改变，计算属性不会重新调用，而method每次都会被调用
+    computed: {
+      fullStr: function () {
+        return this.str1 + ' ' + this.str2;
+      },
+      totalPrice: function () {
+        let res = 0;
+        for (let book of this.books) {
+          res = book.price + res;
+        }
+        return res;
+      }
+    },
+    methods: {
+      getFullStr: function () {
+        return this.str1 + ' ' + this.str2;
+      }
+    }
+  })
+</script>
+</body>
+</html>

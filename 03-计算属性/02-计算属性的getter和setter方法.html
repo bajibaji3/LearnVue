@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{getFullStr()}}</h2>
+  <h2>{{fullStr}}</h2>
+  <button @click="btnClick()">调用计算属性set方法</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      str1: 'hello',
+      str2: 'world',
+    },
+    computed: {
+      //计算属性是有get和set方法的，set方法一般不设置，调用计算属性默认调用它的get方法;
+      //要调用计算属性的set方法，会有一个参数
+      fullStr: {
+        set: function (newValue) {
+          let str = newValue.split(" ");
+          this.str1 = str[0];
+          this.str2 = str[1];
+        },
+        get: function () {
+          return this.str1 + ' ' + this.str2;
+        }
+      },
+
+      // fullStr: {
+      //   get: function () {
+      //     return this.str1 + ' ' + this.str2;
+      //   }
+      // },
+
+      //下面就是计算属性的常用写法，是将set和get方法省略了，function是get方法的那个function
+      // fullStr: function () {
+      //   return this.str1 + ' ' + this.str2;
+      // },
+      totalPrice: function () {
+        let res = 0;
+        for (let book of this.books) {
+          res = book.price + res;
+        }
+        return res;
+      }
+    },
+    methods: {
+      getFullStr: function () {
+        return this.str1 + ' ' + this.str2;
+      },
+      btnClick: function () {
+        this.fullStr = 'world hello';
+      }
+    }
+  })
+</script>
+</body>
+</html>

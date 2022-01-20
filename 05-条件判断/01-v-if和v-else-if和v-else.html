@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2 v-if="score >= 80">优秀</h2>
+  <h2 v-else-if="score >= 60">及格</h2>
+  <h2 v-else>不及格</h2>
+<!--一般判断比较复杂的时候推荐在计算属性中写判断逻辑-->
+  <h2>{{scoreLevel}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      score: 99
+    },
+    computed: {
+      scoreLevel() {
+        let message = '';
+        if (this.score >= 80) {
+          message = '优秀';
+        } else if (this.score >= 60) {
+          message = '及格';
+        } else {
+          message = '不及格';
+        }
+        return message;
+      }
+    },
+  })
+</script>
+</body>
+</html>

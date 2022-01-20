@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <h2>{{message}}</h2>
+  <!--v-once指令只会讲数据展示一遍，当数据改变时，界面显示不会变化-->
+  <h2 v-once>{{message}}</h2>
+  <button @click="change">改变数据</button>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'hello'
+    },
+    methods: {
+      change: function () {
+        this.message = 'world';
+      }
+    }
+  })
+</script>
+</body>
+</html>

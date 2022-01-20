@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn1></cpn1>
+  <cpn1></cpn1>
+</div>
+
+<template id="cpn1">
+  <div>
+    <h2>当前计数：{{counter}}</h2>
+    <button @click="sub">-</button>
+    <button @click="add">+</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  Vue.component('cpn1', {
+    template: '#cpn1',
+    //组件中的data必须是函数，因为函数每次都返回不同的对象实例，这样组件在多次被使用的时候就不会有相互影响
+    //如果是下面这种写法，每次返回的都是相同的对象，所有多次使用时会产生影响（比如计算器案例，一个计算器点了加或减其他的计算器数值都会改变）
+    // data {
+    //   counter: 0
+    // }
+    data() {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      add() {
+        this.counter ++;
+      },
+      sub() {
+        this.counter --;
+      }
+    }
+  })
+  let app = new Vue({
+    el: '#app',
+  })
+</script>
+</body>
+</html>

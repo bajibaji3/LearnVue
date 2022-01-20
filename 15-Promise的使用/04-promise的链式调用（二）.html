@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+
+<script>
+  // new Promise((resolve) => {
+  //   //第一次异步请求
+  //   setTimeout(() => {
+  //     resolve('Hello World');
+  //   }, 1000);
+  // }).then((data) => {
+  //   //第一次结果处理
+  //   console.log(data);
+  //
+  //   return new Promise((resolve) => {
+  //     //对第一层结果进行拼接
+  //     resolve(data + '111');
+  //   }).then((data) => {
+  //     //第二次结果处理
+  //     console.log(data);
+  //
+  //     return new Promise((resolve) => {
+  //       //对第二次处理结果进行拼接
+  //       resolve(data + '222');
+  //     }).then((data) => {
+  //       //第三次结果处理
+  //       console.log(data);
+  //     })
+  //   })
+  // })
+
+  //对上面方式的简写
+  new Promise((resolve) => {
+    //第一次异步请求
+    setTimeout(() => {
+      resolve('Hello World');
+    }, 1000);
+  }).then((data) => {
+    //第一次结果处理
+    console.log(data);
+    //对第一层结果进行拼接
+    return Promise.reject('error')
+  }).then((data) => {
+    //第二次结果处理
+    console.log(data);
+    //对第二次处理结果进行拼接
+    return Promise.resolve(data + '222')
+  }).then((data) => {
+    //第三次结果处理
+    console.log(data);
+  }).catch(err => {
+    console.log(err);
+  })
+
+  //对上面方式的简写,省略Promise.resolve()
+  // new Promise((resolve) => {
+  //   //第一次异步请求
+  //   setTimeout(() => {
+  //     resolve('Hello World');
+  //   }, 1000);
+  // }).then((data) => {
+  //   //第一次结果处理
+  //   console.log(data);
+  //   //对第一层结果进行拼接
+  //   return data + '111'
+  // }).then((data) => {
+  //   //第二次结果处理
+  //   console.log(data);
+  //   //对第二次处理结果进行拼接
+  //   return data + '222'
+  // }).then((data) => {
+  //   //第三次结果处理
+  //   console.log(data);
+  // })
+</script>
+</body>
+</html>

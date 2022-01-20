@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <!--遍历数组-->
+  <ul>
+    <li v-for="(item, index) in books">{{index}}--{{item}}</li>
+  </ul>
+
+  <!--遍历对象-->
+  <ul>
+    <li v-for="(value, key, index) in person">{{index}}--{{key}}--{{value}}</li>
+  </ul>
+
+  <!--绑定key,可以提高vue内部操作的性能,key要保证唯一性-->
+  <ul>
+    <li v-for="item in letters" :key="item">{{item}}</li>
+  </ul>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      books: ['数据结构', '操作系统', '计算机组成原理', '计算机网络'],
+      person: {
+        name: 'wzk',
+        age: 18,
+        height: 1.88
+      },
+      letters: ['A', 'B', 'C','D','E','F']
+    }
+  })
+</script>
+</body>
+</html>

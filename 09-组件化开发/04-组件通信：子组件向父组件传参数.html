@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <cpn1 @item-click="cpnClick"></cpn1>
+</div>
+
+<template id="cpn1">
+  <div>
+    <button v-for="item in menus" :key="item.id" @click="btnClick(item)">{{item.name}}</button>
+  </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+    },
+    components: {
+      'cpn1': {
+        template: `#cpn1`,
+        data() {
+          return {
+            menus: [
+              {id: '111', name: '111'},
+              {id: '222', name: '222'},
+              {id: '333', name: '333'},
+              {id: '444', name: '444'},
+            ],
+          }
+        },
+        methods: {
+          btnClick(item) {
+            this.$emit('item-click', item);
+          },
+        }
+      }
+    },
+    methods: {
+      cpnClick(item) {
+        console.log("itemClick", item);
+      }
+    }
+  })
+</script>
+</body>
+</html>

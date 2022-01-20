@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //什么时候用箭头函数
+  //箭头函数中的this是如何查找的：向外层作用域中，一层层查找this，直到有this的定义
+  const fn1 = function () {
+    setTimeout(function () {
+      console.log(this);
+    })
+  }
+  const fn2 = () => {
+    setTimeout(function () {
+      console.log(this);
+    })
+  }
+  fn1();
+  fn2();
+
+  const obj = {
+    aaa() {
+      setTimeout(function () {
+        console.log(this);
+      })
+
+      setTimeout(() => {
+        console.log(this);
+      })
+    },
+  }
+  obj.aaa();
+</script>
+</body>
+</html>

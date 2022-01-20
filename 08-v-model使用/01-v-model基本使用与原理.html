@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+ <!--基本使用-->
+<!--  <label for="">-->
+<!--    <input type="text" v-model="message">-->
+<!--  </label>-->
+ <!--原理-->
+<!--  <label for="">-->
+<!--    <input type="text" :value="message" @input="valueChange">-->
+<!--  </label>-->
+  <!--或者使用下面写法-->
+  <label for="textInput">
+    <input id="textInput" type="text" :value="message" @input="message = $event.target.value">
+  </label>
+  <h2>{{message}}</h2>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'hello'
+    },
+    methods: {
+      // valueChange(event) {
+      //   this.message = event.target.value;
+      // }
+    }
+  })
+</script>
+</body>
+</html>
